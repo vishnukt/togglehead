@@ -8,7 +8,6 @@ sys.path.insert(1, './first-order-model/')
 from demo import load_checkpoints, make_animation
 from skimage import img_as_ubyte
 from skimage.transform import resize
-import ipdb
 
 
 UPLOAD_FOLDER = '/home/kal-el/toggle_head/uploads'
@@ -24,14 +23,11 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # ipdb.set_trace()
         video = request.form.getlist('video')
         image = request.form.getlist('image')
         file = request.files['file']
-        # ipdb.set_trace()
         # check if the post request has the file part
         if ((file.filename == '' or not allowed_file(file.filename)) and not image) and video:
-            #ipdb.set_trace()
             flash('No selected file')
             return redirect(request.url)
             #return 'No File Submited'
@@ -107,4 +103,4 @@ def toggle():
 
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True)
