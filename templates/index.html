@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}"></head>
+<body>
+
+<form action="/", method="POST", enctype=multipart/form-data>
+  <h3>Select one Driving Video</h3>
+  <input type="radio" name="video" class="sr-only" id="dicaprio", value="Dicaprio">
+  <label for="dicaprio">
+    <img src="{{url_for('static', filename='gifs/Dicaprio.gif')}}" alt="dicaprio">
+  </label>
+  <input type="radio" name="video" class="sr-only" id="obama" value="Obama">
+  <label for="obama">
+    <img src="{{url_for('static', filename='gifs/Obama.gif')}}" alt="obama">
+  </label>
+  <input type="radio" name="video" class="sr-only" id="rock" value="rock">
+  <label for="rock">
+    <img src="{{url_for('static', filename='gifs/rock.gif')}}" alt="rock">
+  </label>
+  <input type="radio" name="video" class="sr-only" id="nava" value="nava">
+  <label for="nava">
+    <img src="{{url_for('static', filename='gifs/nava.gif')}}" alt="nava">
+  </label>
+  <input type="radio" name="video" class="sr-only" id="trump" value="Trump">
+  <label for="trump">
+    <img src="{{url_for('static', filename='gifs/Trump.gif')}}" alt="trump">
+  </label>
+  <h3>Select one Sample Image or Upload your own image</h3>
+  <input type="radio" name="image" class="sr-only" id="annabella" value="annabella">
+  <label for="annabella">
+    <img src="{{url_for('static', filename='images/annabella.png')}}" alt="annabella">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="putin" value="putin">
+  <label for="putin">
+    <img src="{{url_for('static', filename='images/putin.png')}}" alt="putin">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="monalisa" value="monalisa">
+  <label for="monalisa">
+    <img src="{{url_for('static', filename='images/monalisa.png')}}" alt="monalisa">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="woody" value="woody">
+  <label for="woody">
+    <img src="{{url_for('static', filename='images/woody.png')}}" alt="woody">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="snow" value="snow">
+  <label for="snow">
+    <img src="{{url_for('static', filename='images/snow.png')}}" alt="snow">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="emilia" value="emilia">
+  <label for="emilia">
+    <img src="{{url_for('static', filename='images/emilia.png')}}" alt="emilia">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="sophie" value="sophie">
+  <label for="sophie">
+    <img src="{{url_for('static', filename='images/sophie.png')}}" alt="sophie">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="peter" value="peter">
+  <label for="peter">
+    <img src="{{url_for('static', filename='images/peter.png')}}" alt="peter">
+  </label>
+  <input type="radio" name="image" class="sr-only" id="obama_statue" value="obama_statue">
+  <label for="obama_statue">
+    <img src="{{url_for('static', filename='images/obama_statue.png')}}" alt="obama_statue">
+  </label>
+  <br><br>
+  <input type="file" id="myfile" name="file">
+  <h5>Image must be of a face and of ratio 1:1</h5>
+  <input type="submit">
+</form>
+<br>
+<video width="256" height="256" poster="{{poster_image}}" autoplay="" muted="" controls="" preload="auto" name="output">
+<source src="{{output_video}}" type="video/mp4">
+This browser doesn't support video tag.
+</video>
+
+</body>
+</html>

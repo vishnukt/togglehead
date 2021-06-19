@@ -1,0 +1,43 @@
+input[type=checkbox] {
+    display:none;
+}
+
+input#thing1[type=checkbox] + label
+{
+    background-image: url("http://lorempixel.com/50/50/");
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+input#thing2[type=checkbox] + label
+{
+    background-image: url("https://www.freepnglogos.com/uploads/instagram-logos-png-images-free-download-2.png");
+    height: 50px;
+    width: 50px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+}
+
+label {
+    cursor: pointer;
+    filter: grayscale(100%);
+}
+
+label:hover {
+    filter: grayscale(0);
+}
+input[type="radio"]:checked + label {
+    filter: grayscale(0);
+}
+input[type="radio"]{
+    visibility: hidden;
+}
+img{
+    height: 80px;
+    width: 80px;
+}
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(255, 51, 0, 0.5);
+}
