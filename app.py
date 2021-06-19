@@ -10,7 +10,7 @@ from skimage import img_as_ubyte
 from skimage.transform import resize
 
 
-UPLOAD_FOLDER = '/home/kal-el/toggle_head/uploads'
+UPLOAD_FOLDER = '/home/kt_vishnu19/toggle/togglehead/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
