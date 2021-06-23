@@ -10,35 +10,51 @@ from skimage import img_as_ubyte
 from skimage.transform import resize
 
 
-UPLOAD_FOLDER = '/home/kt_vishnu19/toggle/togglehead/uploads'
+UPLOAD_FOLDER = '/home/kt_vishnu19/toggle/togglehead/static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+ALLOWED_VIDEO_EXTENSIONS = {'mp4', 'gif'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-def allowed_file(filename):
+def allowed_image_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def allowed_video_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_VIDEO_EXTENSIONS
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         video = request.form.getlist('video')
         image = request.form.getlist('image')
-        file = request.files['file']
+        file = request.files['source_image']
+        source_video = request.files['source_video']
         # check if the post request has the file part
-        if ((file.filename == '' or not allowed_file(file.filename)) and not image) and video:
+        if (
+            ((file.filename == '' or not allowed_image_file(file.filename)) and not image)
+            or ((source_video.filename == '' or not allowed_video_file(source_video.filename)) and not video)
+        ):
             flash('No selected file')
             return redirect(request.url)
             #return 'No File Submited'
         if not file.filename == '':
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            filepath = './uploads/'+filename
+            filepath = './static/uploads/'+filename
         else:
             filepath = './static/images/'+image[0]+'.png'
+        if not source_video.filename == '':
+            video_filename = secure_filename(source_video.filename)
+            source_video.save(os.path.join(app.config['UPLOAD_FOLDER'], video_filename))
+            dvideo = './static/uploads/'+video_filename
+        else:
+            dvideo = './media/'+video[0]+'.mp4'
+
         source_image = imageio.imread(filepath)
-        dvideo = './media/'+video[0]+'.mp4'
         driving_video = imageio.mimread(dvideo, memtest=False)
 
         #Resize image and video to 256x256
@@ -75,7 +91,7 @@ def toggle():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
+        if file and allowed_image_file(file.filename):
 
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
